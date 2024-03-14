@@ -1,5 +1,5 @@
 # trustification-files-upload
-This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server.
+This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server. \
 The way to use it is pretty simple - Just insert the following data after running the command 'python3 main.py': \
 **path** - Enter the files' path from which you like to upload the files from \
 **url** - Enter the remote Trustificaion server URL where you want your files to be uploaded to \
