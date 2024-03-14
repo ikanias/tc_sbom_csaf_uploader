@@ -1,19 +1,12 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 import cmd
 import random
 import os
 import pycurl
-import json
 from io import BytesIO
-from urllib.parse import urlparse
 
 
 class TcUpload(cmd.Cmd):
     def create_url_and_curl(self, path, url, url_suffix, token):
-        buffer = BytesIO()
         curl = pycurl.Curl()
         files_folder = path
         files_in_folder = os.listdir(files_folder)
@@ -25,17 +18,14 @@ class TcUpload(cmd.Cmd):
             file_id = random.randint(0, 1000000)
             suffix = url_suffix + "?id=" + str(file_id)
             all_url = upload_url + suffix
-        #    curl.setopt(pycurl.WRITEDATA, buffer)
-        #    curl.setopt(pycurl.POST, 1)
-        #    curl.setopt(pycurl.HTTPHEADER, ["Authentication: Bearer " + token])
             curl.setopt(pycurl.HTTPHEADER, ["Content-Type: application/json"])
             curl.setopt(pycurl.HTTPHEADER, ["Authorization: Bearer " + token])
-            x = "Authorization: Bearer " + token + "'"
+            x = "Authorization: Bearer " + token + "'"  # For testing purpose only
             curl.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
             curl.setopt(pycurl.URL, all_url)
             curl.perform()
             curl.setopt(pycurl.HTTPPOST, [('fileupload', (pycurl.FORM_FILE, files_in_folder[i]))])
-            y = print('Status: %d' % curl.getinfo(pycurl.RESPONSE_CODE))
+            y = print('Status: %d' % curl.getinfo(pycurl.RESPONSE_CODE)) # For testing purpose only
             if (y == 200) or (y == 201):
                 print("Succeeded to upload file")
             else:
