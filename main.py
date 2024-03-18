@@ -1,13 +1,11 @@
 import cmd
 import random
 import os
-import pycurl
-from io import BytesIO
+import requests
 
 
 class TcUpload(cmd.Cmd):
     def create_url_and_curl(self, path, url, url_suffix, token):
-        curl = pycurl.Curl()
         files_folder = path
         files_in_folder = os.listdir(files_folder)
         upload_url = url
@@ -18,21 +16,15 @@ class TcUpload(cmd.Cmd):
             file_id = random.randint(0, 1000000)
             suffix = url_suffix + "?id=" + str(file_id)
             all_url = upload_url + suffix
-            curl.setopt(pycurl.HTTPHEADER, ["Content-Type: application/json"])
-            curl.setopt(pycurl.HTTPHEADER, ["Authorization: Bearer " + token])
-            x = "Authorization: Bearer " + token + "'"  # For testing purpose only
-            curl.setopt(pycurl.HTTPHEADER, ['Accept: application/json'])
-            curl.setopt(pycurl.URL, all_url)
-            curl.perform()
-            curl.setopt(pycurl.HTTPPOST, [('fileupload', (pycurl.FORM_FILE, files_in_folder[i]))])
-            y = print('Status: %d' % curl.getinfo(pycurl.RESPONSE_CODE)) # For testing purpose only
-            if (y == 200) or (y == 201):
-                print("Succeeded to upload file")
+            files = {'upload_file': open(path + files_in_folder[i], 'rb')}
+            headers = {'Authorization': 'Bearer ' + token}
+            x = requests.post(all_url, data=None, files=files, json=None, headers=headers)
+            if x == '200' or x == '201':
+                print(str(x.status_code) + ' The file uploaded successfully')
             else:
-                print("Failed to upload file")
-            curl.reset()
-            i += 1
-        curl.close()
+                print(str(x.status_code) + ' The file failed to upload')
+        i += 1
+        requests.session().close()
 
 
 if __name__ == '__main__':
@@ -43,4 +35,3 @@ if __name__ == '__main__':
     url_suffix = input("Please enter the URL suffix for your upload i.e. /api/v1/sbom or /api/v1/vex: ") # Enter suffix
     token = input("Please enter the bearer token: ")  # Enter the bearer token of Trustification api server
     TcUpload().create_url_and_curl(path, url, url_suffix, token)
-
