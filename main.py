@@ -4,9 +4,6 @@ import os
 import subprocess
 
 
-
-
-
 class TcUpload(cmd.Cmd):
     def create_url_and_curl(self, path, url, url_suffix, token):
         files_folder = path
@@ -18,15 +15,19 @@ class TcUpload(cmd.Cmd):
             file_id = random.randint(0, 1000000)
             suffix = url_suffix + "?id=" + str(file_id)
             all_url = url + suffix
-            command = 'curl --header ' + "'Authorization: Bearer " + str(token) + "'" \
-                      + ' --location ' + str(all_url) \
-                      + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
-                      + ' --header ' + "'Content-Type: application/json" + "'"\
-                      + ' --header ' + "'Accept: application/json" + "'"
-            subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            output = subprocess.check_output(['bash', '-c', command])
-            print(output)
-            i += 1
+            if files_in_folder[i].endswith('.json'):
+                command = 'curl --header ' + "'Authorization: Bearer " + str(token) + "'" \
+                          + ' --location ' + str(all_url) \
+                          + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
+                          + ' --header ' + "'Content-Type: application/json" + "'"\
+                          + ' --header ' + "'Accept: application/json" + "'"
+                subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                output = subprocess.check_output(['bash', '-c', command])
+                print(output)
+                i += 1
+            else:
+                print('Error: The file you are trying to upload is not of .json type. Please upload only .json files')
+                break
 
 
 if __name__ == '__main__':
