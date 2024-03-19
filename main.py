@@ -11,7 +11,6 @@ class TcUpload(cmd.Cmd):
     def create_url_and_curl(self, path, url, url_suffix, token):
         files_folder = path
         files_in_folder = os.listdir(files_folder)
-        # upload_url = url
         file_count = len(
             [name for name in os.listdir(files_folder) if os.path.isfile(os.path.join(files_folder, name))])
         print("Starting upload...")
