@@ -1,30 +1,33 @@
 import cmd
 import random
 import os
-import requests
+import subprocess
+
+
+
 
 
 class TcUpload(cmd.Cmd):
     def create_url_and_curl(self, path, url, url_suffix, token):
         files_folder = path
         files_in_folder = os.listdir(files_folder)
-        upload_url = url
+        # upload_url = url
         file_count = len(
             [name for name in os.listdir(files_folder) if os.path.isfile(os.path.join(files_folder, name))])
         print("Starting upload...")
         for i in range(file_count):
             file_id = random.randint(0, 1000000)
             suffix = url_suffix + "?id=" + str(file_id)
-            all_url = upload_url + suffix
-            files = {'upload_file': open(path + files_in_folder[i], 'rb')}
-            headers = {'Authorization': 'Bearer ' + token}
-            x = requests.post(all_url, data=None, files=files, json=None, headers=headers)
-            if x == '200' or x == '201':
-                print(str(x.status_code) + ' The file uploaded successfully')
-            else:
-                print(str(x.status_code) + ' The file failed to upload')
-        i += 1
-        requests.session().close()
+            all_url = url + suffix
+            command = 'curl --header ' + "'Authorization: Bearer " + str(token) + "'" \
+                      + ' --location ' + str(all_url) \
+                      + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
+                      + ' --header ' + "'Content-Type: application/json" + "'"\
+                      + ' --header ' + "'Accept: application/json" + "'"
+            subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            output = subprocess.check_output(['bash', '-c', command])
+            print(output)
+            i += 1
 
 
 if __name__ == '__main__':
