@@ -26,8 +26,9 @@ class TcUpload(cmd.Cmd):
                 print(output)
                 i += 1
             else:
-                print('Error: The file you are trying to upload is not of .json type. Please upload only .json files')
-                break
+                bad_files = str(files_in_folder[i])
+                print('Error: The file you are trying to upload called ' + bad_files + 'is not of .json type. Please upload only .json files')
+                i += 1
 
 
 if __name__ == '__main__':
@@ -38,3 +39,4 @@ if __name__ == '__main__':
     url_suffix = input("Please enter the URL suffix for your upload i.e. /api/v1/sbom or /api/v1/vex: ") # Enter suffix
     token = input("Please enter the bearer token: ")  # Enter the bearer token of Trustification api server
     TcUpload().create_url_and_curl(path, url, url_suffix, token)
+
