@@ -15,8 +15,8 @@ class TcUpload(cmd.Cmd):
             file_id = random.randint(0, 1000000)
             suffix = url_suffix + "?id=" + str(file_id)
             all_url = url + suffix
-            if files_in_folder[i].endswith('.json'):
-                command = 'curl --header ' + "'Authorization: Bearer " + str(token) + "'" \
+            if (files_in_folder[i].endswith('.json')) or (files_in_folder[i].endswith('.bz2')):
+                command = 'curl  -k --header ' + "'Authorization: Bearer " + str(token) + "'" \
                           + ' --location ' + str(all_url) \
                           + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
                           + ' --header ' + "'Content-Type: application/json" + "'"\
@@ -27,7 +27,7 @@ class TcUpload(cmd.Cmd):
                 i += 1
             else:
                 bad_files = str(files_in_folder[i])
-                print('Error: The file you are trying to upload called ' + bad_files + 'is not of .json type. Please upload only .json files')
+                print('Error: The file you are trying to upload called ' + "'" + bad_files + "'" + ' is not of .json type. Please upload only .json files')
                 i += 1
 
 
