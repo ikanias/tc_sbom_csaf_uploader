@@ -1,4 +1,5 @@
 # tc_sbom_csaf_uploader
+------------------------
 This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server. \
 The way to use it is pretty simple - Just insert the following data after running the command 'python3 main.py': \
 **path** - Enter the files' path from which you like to upload the files from \
@@ -7,6 +8,7 @@ The way to use it is pretty simple - Just insert the following data after runnin
 **Bearer token** - The bearer token to use for authorization in front of the remote server. 
 
 tc_sbom_csaf_uploader with automatic token
+-------------------------------------------
 This option reffers to project: https://github.com/ctron/oidc-cli/tree/main
 
 If you do not wish to use a bearer token from the application's UI which expires every 5 minutes, you can use the tc_sbom_csaf_uploader
