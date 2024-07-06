@@ -22,6 +22,7 @@ In order to do that you need to retrieve the following from the AWS cognito serv
 2. The App client name 
 3. The walker Client ID
 4. The walker Client secret
+
 And to tall of these you just adding the regular data you added in the basic version of the tool (Folder to upload the files from,
 remote server to upload the files to etc...)
 
