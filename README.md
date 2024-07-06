@@ -16,8 +16,8 @@ This option reffers to project: https://github.com/ctron/oidc-cli/tree/main
 If you do not wish to use a bearer token from the application's UI which expires every 5 minutes, you can use the tc_sbom_csaf_uploader
 version which uses the oidc_cli tool. This tool retrieves a token from AWS cognito server and then insert it to the uploader to use.
 This allows you to upload a lot of files at once for a large amount of time, without worrying that the token will expire.
-I order to use this feature, just select the branch: 'automatic_token'.
-In order to do that you need to retrieve the following from the AWS cognito server:
+In order to use this feature, just select the branch: 'automatic_token'.
+To use the tool you need to retrieve the following from the AWS cognito server:
 1. The cognito server URL (i.e. https://example.com/realm)
 2. The App client name 
 3. The walker Client ID
