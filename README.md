@@ -9,7 +9,7 @@ The way to use it is pretty simple - Just insert the following data after runnin
 **url_suffix** - Enter the URL suffix according to the file type you want to upload (i.e. /api/v1/sbom or /api/v1/vex) \
 **Bearer token** - The bearer token to use for authorization in front of the remote server. 
 
-tc_sbom_csaf_uploader with automatic token used with AWS cognito
+tc_sbom_csaf_uploader with automatic token used for AWS cognito
 -----------------------------------------------------------------
 This option reffers to project: https://github.com/ctron/oidc-cli/tree/main
 
