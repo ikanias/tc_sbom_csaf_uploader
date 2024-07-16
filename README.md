@@ -39,11 +39,18 @@ In this case, a Cognito idp is not available. This option allows you to use the 
 To do this you need to insert the following data:
 
 idp_url - Enter the idp URL (i.e. Keycloak) with the user pool id 
+
 client_name - Enter the name for the token you will use 
+
 client_id - Enter the walker client ID from the cognito console 
+
 client_secret - Enter the client secret of the walker displayed in your non-AWS idp (i.e. Keycloack idp) console 
+
 path - Enter the SBOM/CSAF files' path from which you want to upload the files from 
+
 upload_url - Enter the remote server URL to upload the files to (https://vex-tpa-cluster.net) 
+
 url_suffix - Enter suffix according to the files you want to upload. If you want to upload SBOM files then enter /api/v1/sbom, if you want to upload CSAF files enter /api/v1/vex 
+
 certificate_path - Enter the trusted anchor certificate you have for the site (i.e. tls.crt file you created according to the instructions here: https://github.com/trustification/trustification/blob/main/docs/modules/admin/pages/cluster-install.adoc) 
 
