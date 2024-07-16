@@ -26,7 +26,7 @@ The walker Client ID
 The walker Client secret
 And to all of these you just add the regular data you used to add in the basic version of the tool:
 **path** - Enter the files' path from which you like to upload the files from 
-**url** - Enter the remote Trustificaion server URL where you want your files to be uploaded to 
+**url** - Enter the remote Trustificaion server URL where you want your files to be uploaded to (i.e. https://vex-tpa_namespace.net for VEX upload or https://sbom-tpa_namespace.net for SBOM upload)
 **url_suffix** - Enter the URL suffix according to the file type you want to upload (i.e. /api/v1/sbom or /api/v1/vex) 
 
 
@@ -48,7 +48,7 @@ client_secret - Enter the client secret of the walker displayed in your non-AWS 
 
 path - Enter the SBOM/CSAF files' path from which you want to upload the files from 
 
-upload_url - Enter the remote server URL to upload the files to (https://vex-tpa-cluster.net) 
+upload_url - Enter the remote server URL to upload the files to (https://vex-tpa-namespace.net) 
 
 url_suffix - Enter suffix according to the files you want to upload. If you want to upload SBOM files then enter /api/v1/sbom, if you want to upload CSAF files enter /api/v1/vex 
 
