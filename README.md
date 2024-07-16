@@ -1,5 +1,5 @@
-# tc_sbom_csaf_uploader
-------------------------
+tc_sbom_csaf_uploader with UI bearer token
+-------------------------------------------
 This tool works under the Trustification project (https://github.com/trustification/trustification).
 This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server. \
 The way to use it is pretty simple - Just insert the following data after running the command 'python3 main.py': \
