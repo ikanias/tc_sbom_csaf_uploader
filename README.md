@@ -1,6 +1,7 @@
 tc_sbom_csaf_uploader with UI bearer token
 -------------------------------------------
-This tool works under the Trustification project (https://github.com/trustification/trustification).
+This tool works under the Trustification project (https://github.com/trustification/trustification). \
+In order to use this option of the tool please select the 'master' branch. \
 This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server. \
 The way to use it is pretty simple - Just insert the following data after running the command 'python3 main.py': \
 **path** - Enter the files' path from which you like to upload the files from \
@@ -14,6 +15,7 @@ tc_sbom_csaf_uploader with UI bearer token, where the remote server uses TLS/SSL
 Thie tool works under the Trustification project (https://github.com/trustification/trustification). \
 This tool is intended to upload SBOM or CSAF/VEX files of .json type to the Trustification application remote server which has an TLS/SSL certificate. \
 Because the tool uses CURL, in order for it to work with TLS/SSL certificates when uploading the files to the remote TPA server, '-k' option was added to the CURL command. \
+In order to use this option of the tool please select the 'sslsites' branch. \
 The way to use it is pretty simple - Just insert the following data after running the command 'python3 main.py': \
 path - Enter the files' path from which you like to upload the files from \
 url - Enter the remote Trustificaion server URL where you want your files to be uploaded to(https://vex-tpa_namespace.net for VEX upload or https://sbom-tpa_namespace.net for SBOM upload) \
@@ -48,6 +50,7 @@ This option reffers to project: https://github.com/ctron/oidc-cli/tree/main
 
 This option uses the --root-certificate option of the OIDC CLI tool in order to use a token from a trusted anchor CA for a TPA installation without AWS resources.
 In this case, a Cognito idp is not available. This option allows you to use the Keycloak idp using a trusted anchor CA (i.e. tls.crt file).
+In order to use this option of the tool please select the 'automatic_token_non_aws' branch. \
 To do this you need to insert the following data:
 
 idp_url - Enter the idp URL (i.e. Keycloak) with the user pool id \
