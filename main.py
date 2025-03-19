@@ -12,12 +12,14 @@ class TcUpload(cmd.Cmd):
             [name for name in os.listdir(files_folder) if os.path.isfile(os.path.join(files_folder, name))])
         print("Starting upload...")
         for i in range(file_count):
-            file_id = random.randint(0, 1000000)
-            suffix = url_suffix + "?id=" + str(file_id)
+            #file_id = random.randint(0, 1000000)
+            suffix = url_suffix #+ "?additionalProp1=a&additionalProp2=b&additionalProp3=c" #+ "?id=" + str(file_id)
             all_url = url + suffix
             if (files_in_folder[i].endswith('.json')) or (files_in_folder[i].endswith('.bz2')):
-                command = 'curl  -k --header ' + "'Authorization: Bearer " + str(token) + "'" \
+                command = 'curl -X POST' \
                           + ' --location ' + str(all_url) \
+                          + ' -k --header ' \
+                          + "'Authorization: Bearer " + str(token) + "'" \
                           + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
                           + ' --header ' + "'Content-Type: application/json" + "'"\
                           + ' --header ' + "'Accept: application/json" + "'"
