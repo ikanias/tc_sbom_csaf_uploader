@@ -41,14 +41,16 @@ class TcUpload(cmd.Cmd):
             [name for name in os.listdir(files_folder) if os.path.isfile(os.path.join(files_folder, name))])
         print("Starting upload...")
         for i in range(file_count):
-            file_id = random.randint(0, 1000000)
-            suffix = url_suffix + "?id=" + str(file_id)
+            #file_id = random.randint(0, 1000000)
+            suffix = url_suffix + "?additionalProp1=a&additionalProp2=b&additionalProp3=c"
             all_url = upload_url + suffix
             if (files_in_folder[i].endswith('.json')) or (files_in_folder[i].endswith('.bz2')):
-                command = 'curl -k --header ' + "'Authorization: Bearer " + str(TcUpload.token) + "'" \
+                command = 'curl -X POST' \
                           + ' --location ' + str(all_url) \
+                          + ' -k --header ' \
+                          + "'Authorization: Bearer " + str(token) + "'" \
                           + ' --upload-file ' + '"{' + str(path + files_in_folder[i]) + '}"' \
-                          + ' --header ' + "'Content-Type: application/json" + "'"\
+                          + ' --header ' + "'Content-Type: application/json" + "'" \
                           + ' --header ' + "'Accept: application/json" + "'"
                 subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 output = subprocess.check_output(['bash', '-c', command], text=True)
@@ -74,7 +76,7 @@ if __name__ == '__main__':
     client_secret = input("Please enter the backend (walker) client secret from the idp console: ") # Enter the client secret under the walker in your AWS cognito console
     path = input("Please enter the path to upload your SBOM or CSAF files from: ")  # Enter the files' path
     upload_url = input("Please enter the server URL to upload the files to: ")   # Enter the remote server URL to upload files
-    url_suffix = input("Please enter the URL suffix for your upload i.e. /api/v1/sbom or /api/v1/vex: ") # Enter suffix
+    url_suffix = input("Please enter the URL suffix for your upload i.e. /api/v2/sbom or /api/v2/advisory: ") # Enter suffix
     certificate_path = input("Please insert the folder of your custom certificate which you created for your site (i.e. trusted anchor): ") # Enter the certificate/trusted anchor certificate you have for the site
     TcUpload().install_oidc(idp_url, client_name, client_id, client_secret, certificate_path)
     TcUpload().create_url_and_curl(path, upload_url, url_suffix,client_name)
