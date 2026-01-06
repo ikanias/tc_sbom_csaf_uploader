@@ -53,13 +53,7 @@ path - Enter the SBOM/CSAF files' path from which you want to upload the files f
 upload_url - Enter the remote server URL to upload the files to (https://vex-tpa-namespace.net)
 url_suffix - Enter suffix according to the files you want to upload. If you want to upload SBOM files then enter /api/v1/sbom, if you want to upload CSAF files enter /api/v1/vex
 certificate_path - Enter the trusted anchor certificate you have for the site (i.e. tls.crt file you created according to the instructions here: https://github.com/trustification/trustification/blob/main/docs/modules/admin/pages/cluster-install.adoc)
-Test 123
-Test 456
-Test 789
-Test 111
-Test 222
-Test 333
-Test 444
+
 
 
 
