@@ -9,3 +9,4 @@ The way to use it is pretty simple - Just insert the following data after runnin
 **url** - Enter the remote Trustificaion server URL where you want your files to be uploaded to(https://vex-tpa_namespace.net for VEX upload or https://sbom-tpa_namespace.net for SBOM upload
 **url_suffix** - Enter the URL suffix according to the file type you want to upload (i.e. /api/v1/sbom or /api/v1/vex) \
 **Bearer token** - The bearer token to use for authorization in front of the remote server. 
+Testing 123
