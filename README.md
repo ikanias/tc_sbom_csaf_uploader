@@ -55,5 +55,7 @@ url_suffix - Enter suffix according to the files you want to upload. If you want
 certificate_path - Enter the trusted anchor certificate you have for the site (i.e. tls.crt file you created according to the instructions here: https://github.com/trustification/trustification/blob/main/docs/modules/admin/pages/cluster-install.adoc)
 Test 123
 Test 456
+Test 789
+
 
 
